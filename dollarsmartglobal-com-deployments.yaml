@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+  labels:
+    workload.user.cattle.io/workloadselector: deployment-dsg-front-dollarsmartglobal-com
+  name: dollarsmartglobal-com
+  namespace: dsg-front
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      workload.user.cattle.io/workloadselector: deployment-dsg-front-dollarsmartglobal-com
+  template:
+    metadata:
+      labels:
+        workload.user.cattle.io/workloadselector: deployment-dsg-front-dollarsmartglobal-com
+    spec:
+      containers:
+      - image: 589962364545.dkr.ecr.ap-southeast-1.amazonaws.com/dollarsmartglobal-com:1.0.17
+        imagePullPolicy: Always
+        name: dollarsmartglobal-com
+        resources: {}
+        stdin: true
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        tty: true
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: aws-ecr-secrets
+      restartPolicy: Always
+      schedulerName: default-scheduler
