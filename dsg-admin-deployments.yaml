@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+  labels:
+    workload.user.cattle.io/workloadselector: deployment-dsg-app-dsg-admin
+  name: dsg-admin
+  namespace: dsg-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      workload.user.cattle.io/workloadselector: deployment-dsg-app-dsg-admin
+  template:
+    metadata:
+      labels:
+        workload.user.cattle.io/workloadselector: deployment-dsg-app-dsg-admin
+    spec:
+      containers:
+      - env:
+        - name: JWT_SECRET
+          value: ABCD1234
+        - name: MONGO_URL
+          value: mongodb+srv://stage-dsguser:pz8fR7swzFNd3dka@stage-dsg-42wuh.mongodb.net/DSG?retryWrites=true&w=majority
+      - image: 589962364545.dkr.ecr.ap-southeast-1.amazonaws.com/dsg-admin:1.0.509
+        imagePullPolicy: Always
+        name: dsg-admin
+        resources: {}
+        stdin: true
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        tty: true
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: aws-ecr-secrets
+      restartPolicy: Always
+      schedulerName: default-scheduler
