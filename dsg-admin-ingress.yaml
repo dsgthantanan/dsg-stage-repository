@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: app
+  name: dsg-admin-ingress
+  namespace: dsg-app
+spec:
+  rules:
+  - host: dev-admin.dollarsmartglobal.com
+    http:
+      paths:
+      - backend:
+          serviceName: ingress-6218ca0ed48c08e65afe6b4eabdf9a73
+          servicePort: 8080
+        pathType: ImplementationSpecific
+  tls:
+  - hosts:
+    - dev-admin.dollarsmartglobal.com
