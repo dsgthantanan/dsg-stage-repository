@@ -11,7 +11,7 @@ spec:
     http:
       paths:
       - backend:
-          serviceName: dsg-admin-svc
+          serviceName: dsg-admin-wl-svc
           servicePort: 8080
         pathType: ImplementationSpecific
   tls:
