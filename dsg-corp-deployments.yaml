@@ -50,6 +50,7 @@ kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: app
+    cert-manager.io/cluster-issuer: letsencrypt-prod
   name: dsg-corp-ingress
   namespace: dsg-app
 spec:
@@ -61,3 +62,7 @@ spec:
           serviceName: dsg-corp-wl-svc
           servicePort: 8080
         pathType: ImplementationSpecific
+  tls:
+   - hosts:
+        - dev-corp.dollarsmartglobal.com
+        secretName: dsg-corp-tls #store key
