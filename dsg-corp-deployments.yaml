@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+  labels:
+    workload.user.cattle.io/workloadselector: deployment-dsg-app-dsg-corp
+  name: dsg-corp
+  namespace: dsg-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      workload.user.cattle.io/workloadselector: deployment-dsg-app-dsg-corp
+  template:
+    metadata:
+      labels:
+        workload.user.cattle.io/workloadselector: deployment-dsg-app-dsg-corp
+    spec:
+      containers:
+      - env:
+        - name: JWT_SECRET
+          value: ABCD1234
+        - name: MONGO_URL
+          value: mongodb+srv://stage-dsguser:pz8fR7swzFNd3dka@stage-dsg-42wuh.mongodb.net/DSG?retryWrites=true&w=majority
+        image: 589962364545.dkr.ecr.ap-southeast-1.amazonaws.com/dsg-corp:1.0.287
+        name: dsg-corp
+      imagePullSecrets:
+      - name: aws-ecr-secrets
