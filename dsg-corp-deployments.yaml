@@ -63,5 +63,6 @@ spec:
           servicePort: 8080
         pathType: ImplementationSpecific
   tls:
-    - hosts: dev-corp.dollarsmartglobal.com
-      secretName: aws-r53-key
+    hosts: 
+    - dev-corp.dollarsmartglobal.com
+      secretName: dsg-corp-tls
