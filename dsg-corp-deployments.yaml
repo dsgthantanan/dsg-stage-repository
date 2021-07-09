@@ -62,6 +62,6 @@ spec:
           serviceName: dsg-corp-wl-svc
           servicePort: 8080
         pathType: ImplementationSpecific
-    tls:
+  tls:
     - hosts: dev-corp.dollarsmartglobal.com
-        secretName: dsg-front-tls
+      secretName: dsg-front-tls
