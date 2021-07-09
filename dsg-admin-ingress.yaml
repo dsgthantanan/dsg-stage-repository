@@ -3,6 +3,7 @@ kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: app
+    cert-manager.io/cluster-issuer: aws-issuer
   name: dsg-admin-ingress
   namespace: dsg-app
 spec:
@@ -14,3 +15,7 @@ spec:
           serviceName: dsg-admin-wl-svc
           servicePort: 8080
         pathType: ImplementationSpecific
+  tls:
+  - hosts:
+    - dev-admin.dollarsmartglobal.com
+    secretName: dsg-admin-tls
