@@ -63,5 +63,6 @@ spec:
           servicePort: 8080
         pathType: ImplementationSpecific
   tls:
-    host: dev-corp.dollarsmartglobal.com
-      secretName: dsg-corp-tls
+  - hosts:
+    - dev-corp.dollarsmartglobal.com
+    secretName: dsg-corp-tls
