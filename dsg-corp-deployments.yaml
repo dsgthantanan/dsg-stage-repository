@@ -64,4 +64,4 @@ spec:
         pathType: ImplementationSpecific
   tls:
     - hosts: dev-corp.dollarsmartglobal.com
-      secretName: dsg-front-tls
+      secretName: dsg-corp-tls
