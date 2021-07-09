@@ -10,7 +10,7 @@ spec:
   clusterIPs:
   - None
   ports:
-  - name: ARPA
+  - name: arpa
     port: 42
     protocol: TCP
     targetPort: 42
