@@ -26,3 +26,38 @@ spec:
         name: dsg-corp
       imagePullSecrets:
       - name: aws-ecr-secrets
+      
+---  
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    field.cattle.io/targetWorkloadIds: '["deployment:dsg-app:dsg-corp"]'
+  name: dsg-corp-wl-svc
+  namespace: dsg-app
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    workload.user.cattle.io/workloadselector: deployment-dsg-app-dsg-corp
+  type: ClusterIP
+
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: app
+  name: dsg-corp-ingress
+  namespace: dsg-app
+spec:
+  rules:
+  - host: dev-corp.dollarsmartglobal.com
+    http:
+      paths:
+      - backend:
+          serviceName: dsg-corp-wl-svc
+          servicePort: 8080
+        pathType: ImplementationSpecific
