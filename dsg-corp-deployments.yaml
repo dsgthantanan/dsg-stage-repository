@@ -49,7 +49,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   annotations:
-    kubernetes.io/ingress.class: app
+    kubernetes.io/ingress.class: dsg-public-lb-1
     cert-manager.io/cluster-issuer: aws-issuer
   name: dsg-corp-ingress
   namespace: dsg-app
