@@ -23,8 +23,8 @@ spec:
         - name: MONGO_URL
           value: mongodb+srv://stage-dsguser:pz8fR7swzFNd3dka@stage-dsg-42wuh.mongodb.net/DSG?retryWrites=true&w=majority
         - image: 589962364545.dkr.ecr.ap-southeast-1.amazonaws.com/dsg-graphql-dsgrfb:1.0.0
-          imagePullPolicy: Always
-          name: dsg-graphql-dsgrfb
+      imagePullPolicy: Always
+      name: dsg-graphql-dsgrfb
       imagePullSecrets:
       - name: aws-ecr-secrets
 
