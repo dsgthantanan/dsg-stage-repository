@@ -71,4 +71,4 @@ spec:
   tls:
   - hosts:
     - dev-www.dollarsmartglobal.com
-    secretName: dsg-admin-tls
+    secretName: dsg-www-tls
