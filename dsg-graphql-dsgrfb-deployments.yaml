@@ -25,8 +25,8 @@ spec:
         - image: 589962364545.dkr.ecr.ap-southeast-1.amazonaws.com/dsg-graphql-dsgrfb:1.0.0
           imagePullPolicy: Always
           name: dsg-graphql-dsgrfb
-        imagePullSecrets:
-        - name: aws-ecr-secrets
+      imagePullSecrets:
+      - name: aws-ecr-secrets
 
 ---
 
