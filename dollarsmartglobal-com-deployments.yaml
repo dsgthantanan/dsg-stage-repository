@@ -30,3 +30,45 @@ spec:
       - name: aws-ecr-secrets
       restartPolicy: Always
       schedulerName: default-scheduler
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    field.cattle.io/targetWorkloadIds: '["deployment:dsg-front-dollarsmartglobal-com"]'
+  name: dollarsmartglobal-com-wl-svc
+  namespace: dsg-front
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    workload.user.cattle.io/workloadselector: deployment-dsg-front-dollarsmartglobal-com
+  type: ClusterIP
+  
+---
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: dsg-public-lb-1
+    cert-manager.io/cluster-issuer: aws-issuer
+  name: dollarsmartglobal-com-ingress
+  namespace: dsg-front
+spec:
+  rules:
+  - host: dev-www.dollarsmartglobal.com
+    http:
+      paths:
+      - backend:
+          serviceName: dollarsmartglobal-com-wl-svc
+          servicePort: 8080
+        pathType: ImplementationSpecific
+  tls:
+  - hosts:
+    - dev-www.dollarsmartglobal.com
+    secretName: dsg-admin-tls
