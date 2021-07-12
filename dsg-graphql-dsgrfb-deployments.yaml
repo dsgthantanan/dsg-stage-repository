@@ -3,14 +3,14 @@ kind: Deployment
 metadata:
   annotations:
   labels:
-    workload.user.cattle.io/workloadselector: deployment-dsg-graphql-dsg-graphql-dsg-rfb
+    workload.user.cattle.io/workloadselector: deployment-dsg-graphql-dsg-graphql-dsgrfb
   name: dsg-graphql-dsgrfb
   namespace: dsg-graphql
 spec:
   replicas: 1
   selector:
     matchLabels:
-      workload.user.cattle.io/workloadselector: deployment-dsg-graphql-dsg-graphql-dsg-rfb
+      workload.user.cattle.io/workloadselector: deployment-dsg-graphql-dsg-graphql-dsgrfb
   template:
     metadata:
       labels:
@@ -46,7 +46,7 @@ spec:
     protocol: TCP
     targetPort: 4000
   selector:
-    workload.user.cattle.io/workloadselector: deployment-dsg-graphql-dsg-graphql-dsg-rfb
+    workload.user.cattle.io/workloadselector: deployment-dsg-graphql-dsg-graphql-dsgrfb
   type: ClusterIP
   
 ---
